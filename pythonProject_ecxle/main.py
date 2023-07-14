@@ -17,22 +17,28 @@
 import pandas as pd
 
 # 读取Excel文件
-data = pd.read_excel('Signal.xlsx')
+data = pd.read_excel('delivery_manifest.xlsx')
 
 # 获取列名
 column_names = data.columns.tolist()
 print(column_names)
 
 # 选择指定的一列数据
-if 'PDU' in column_names and 'ID' in column_names :
-    column_data_PDU = data['PDU'].tolist()
-    column_data_ID=data['ID'].tolist()
-    column_data=column_data_ID + column_data_PDU
-    print(column_data_PDU)
-    print(column_data_ID)
-    print(column_data)
+if 'Part Number' in column_names and 'DLS/PLS' in column_names :
+    column_data_PDU = data['Part Number'].tolist()
+    column_data_ID=data['DLS/PLS'].tolist()
+    # print(column_data_PDU)
+    # print(column_data_ID)
 else:
     print("Column 'PDU and ID' not found in the DataFrame.")
+print(column_data_PDU[0])
+column_data=[]
+for i in range(len(column_data_ID)):
+        first_element1 = column_data_PDU[i]
+        first_element2 = column_data_ID[i]
+        column_data.append([first_element1,first_element2])
+print(column_data)
+
 
 
 
